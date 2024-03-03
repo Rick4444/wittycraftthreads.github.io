@@ -589,8 +589,6 @@ to {opacity: 1}
   }
 
 
-  // Generate series of `.navbar-expand-*` responsive classes for configuring
-// where your navbar collapses.
 .navbar-expand {
   @each $breakpoint in map-keys($grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $grid-breakpoints);
