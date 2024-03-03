@@ -3,6 +3,7 @@ clevertap.notifications.push({
   bodyText: "Will send you only trusted notifcations and updates",
   okButtonText: "OK",
   rejectButtonText: "Cancel",
+  rejectButtonColor: "#3B3B3B",
   okButtonColor: "#0697BE",
   serviceWorkerPath: "https://rick4444.github.io/wittycraftthreads.github.io/clevertap_sw.js",
   okCallback: function () {
