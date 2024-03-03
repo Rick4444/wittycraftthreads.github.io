@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World's of Toy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="newbody">
+    <header>
+        <div class="logo">
+            <img src="https://cdn5.vectorstock.com/i/1000x1000/67/04/horse-logo-with-letter-h-concept-vector-46026704.jpg" alt="WoT">
+        </div>
+        <style>
+            marquee{
+            font-size: 16px;
+            color: lightblue;
+            font-family: sans-serif;
+            }
+          </style>
+        <marquee width="60%" direction="left" height="20px">
+            No question asked return policy.
+            </marquee>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Toys</a></li>
+                <li><a href="#">Games</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="navigate('Activities')">Activities <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="navigate('Outdoor')">Outdoor</a>
+                        <a href="#" onclick="navigate('Indoor')">Indoor</a>
+                        <a href="#" onclick="navigate('Educational')">Educational</a>
+                    </div>
+                </li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#" onclick="theFunction()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+  <div class="container">
+    <div class="filter-container">
+      <div class="filter-group">
+        <label for="brand">Brand:</label>
+        <select id="brand">
+          <option value="">All Brands</option>
+          <option value="brand1">Brand 1</option>
+          <option value="brand2">Brand 2</option>
+          <!-- Add more brand options as needed -->
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="category">Category:</label>
+        <select id="category">
+          <option value="">All Categories</option>
+          <option value="category1">Category 1</option>
+          <option value="category2">Category 2</option>
+          <!-- Add more category options as needed -->
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="price">Price Range:</label>
+        <div>
+          <input type="number" id="minPrice" placeholder="Min" min="0">
+        </div>
+        <div>
+          <input type="number" id="maxPrice" placeholder="Max" min="0">
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label for="discount">Discount:</label>
+        <input type="checkbox" id="discount">
+      </div>
+    </div>
+
+    <div class="products">
+      <div class="product">Product 1</div>
+      <div class="product">Product 2</div>
+      <div class="product">Product 3</div>
+      <div class="product">Product 4</div>
+      <div class="product">Product 5</div>
+      <div class="product">Product 6</div>
+      <div class="product">Product 1</div>
+      <div class="product">Product 2</div>
+      <div class="product">Product 3</div>
+      <div class="product">Product 4</div>
+      <div class="product">Product 5</div>
+      <div class="product">Product 6</div>
+      <div class="product">Product 1</div>
+      <div class="product">Product 2</div>
+      <div class="product">Product 3</div>
+      <div class="product">Product 4</div>
+      <div class="product">Product 5</div>
+      <div class="product">Product 6</div>
+      <div class="product">Product 1</div>
+      <div class="product">Product 2</div>
+      <div class="product">Product 3</div>
+      <div class="product">Product 4</div>
+      <div class="product">Product 5</div>
+      <div class="product">Product 6</div>
+      <div class="product">Product 1</div>
+      <div class="product">Product 2</div>
+      <div class="product">Product 3</div>
+      <div class="product">Product 4</div>
+      <div class="product">Product 5</div>
+      <div class="product">Product 6</div>
+    </div>
+  </div>
+    
+      <script>
+        document.getElementById('price').addEventListener('input', function () {
+          document.getElementById('priceValue').innerText = this.value;
+        });
+      </script>
+    
+    </body>
+    </html>
