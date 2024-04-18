@@ -675,6 +675,7 @@ to {opacity: 1}
     justify-content: center;
     list-style-type: none;
     padding: 0;
+    margin-bottom: 10px;
 }
 
 .options li {
@@ -691,4 +692,35 @@ to {opacity: 1}
 
 .options li a:hover {
     background-color: #555;
+}
+
+/* Style for dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 120px;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
