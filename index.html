@@ -35,6 +35,12 @@
       })();
       console.log("web sdk initialize");
       clevertap.event.push("web_page_called");
+      var props = {foo: 'xyz', lang: 'French'};
+      var message = { action:'recordEventWithProps', event:'Product Viewed', properties: props};
+        if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.your_variable_name_here){
+         // Call iOS interface       
+          window.webkit.messageHandlers.iOSRameshwar_2208.postMessage(message);         
+        } 
     </script>
     <script type="module">
       import {
