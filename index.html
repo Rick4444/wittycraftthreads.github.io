@@ -9,8 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript">
 
-       if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iOSRameshwar_2208){}
-        else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.AndroidRameshwar_2208){}
+       if(window.ReactNativeWebView){}
       else{
          var clevertap = {
         event: [],
@@ -46,7 +45,7 @@
       
       var props = {foo: 'xyz', lang: 'French'};
       var message = { action:'recordEventWithProps', event:'Product Viewed', properties: props};
-        if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iOSRameshwar_2208){
+        if (window.ReactNativeWebView){
           window.webkit.messageHandlers.iOSRameshwar_2208.postMessage(message);         
         } 
       else{
