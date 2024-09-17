@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World's of Toy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript">
 
-       if(window.ReactNativeWebView){}
-      else{
-         var clevertap = {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World's of Toy</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- Scripts -->
+  <script type="text/javascript">
+    if (window.ReactNativeWebView) {
+      const date_viewed = new Date(2018, 11, 24);
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+        Type: "event",
+        EventName: 'raised_from_webview',
+        Payload: {
+          'Product Name': 'Dairy Milk',
+          'Category': 'Chocolate',
+          'Amount': 20.00,
+          DateViewed: date_viewed
+        }
+      }));
+    } else {
+      var clevertap = {
         event: [],
         profile: [],
         account: [],
@@ -38,281 +53,142 @@
       })();
       console.log("web sdk initialize");
       clevertap.event.push("web_sdk_initialised");
+      clevertap.event.push("raised_from_website");
+    }
+  </script>
+  <script type="module">
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+    import {
+      getAnalytics
+    } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
 
-     }
+    const firebaseConfig = {
+      apiKey: "AIzaSyCLBqex1hBag_vGPf35omQu8O__5FZhbIU",
+      authDomain: "clevertap-android-demo.firebaseapp.com",
+      projectId: "clevertap-android-demo",
+      storageBucket: "clevertap-android-demo.appspot.com",
+      messagingSenderId: "93452753934",
+      appId: "1:93452753934:web:d6a8cb0d5fb3ffe71cb05f",
+      measurementId: "G-3QWH98LBEK"
+    };
 
-     
-      
-      // var props = {foo: 'xyz', lang: 'French'};
-      // var message = { action:'recordEventWithProps', event:'Product Viewed', properties: props};
-        if (window.ReactNativeWebView){
-          const date_viewed = new Date(2018, 11, 24);
-          window.ReactNativeWebView.postMessage(JSON.stringify({Type:"event",EventName : 'raised_from_webview', Payload: {'Product Name': 'Dairy Milk','Category': 'Chocolate','Amount': 20.00, DateViewed:date_viewed}}));
-        } 
-      else{
-        clevertap.event.push("raised_from_website");
-      }
-    </script>
-    <script type="module">
-      import {
-        initializeApp
-      } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-      import {
-        getAnalytics
-      } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
-      const firebaseConfig = {
-        apiKey: "AIzaSyCLBqex1hBag_vGPf35omQu8O__5FZhbIU",
-        authDomain: "clevertap-android-demo.firebaseapp.com",
-        projectId: "clevertap-android-demo",
-        storageBucket: "clevertap-android-demo.appspot.com",
-        messagingSenderId: "93452753934",
-        appId: "1:93452753934:web:d6a8cb0d5fb3ffe71cb05f",
-        measurementId: "G-3QWH98LBEK"
-      };
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-    </script>
-    <link rel="manifest" href="https://rick4444.github.io/wittycraftthreads.github.io/manifest.json" />
-  </head>
-  <body>
-    <header>
-      <ul class="options">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="#">Contact</a></li>
-          <li class="dropdown">
-            <a href="#">More</a>
-            <div class="dropdown-content">
-                <a href="#">Blog</a>
-                <a href="#">FAQ</a>
-                <a href="#">Testimonials</a>
-            </div>
-        </li>
-      </ul>
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="https://rick4444.github.io/wittycraftthreads.github.io/manifest.json" />
+</head>
+
+<body>
+  <header>
+    <ul class="options">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Contact</a></li>
+      <li class="dropdown">
+        <a href="#">More</a>
+        <div class="dropdown-content">
+          <a href="#">Blog</a>
+          <a href="#">FAQ</a>
+          <a href="#">Testimonials</a>
+        </div>
+      </li>
+    </ul>
   </header>
-    <!-- <header>
-      <nav class="navbar navbar-expand-lg">
-        <nav class="navbar navbar-expand-lg" style="background-color: #004c4c;">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Men</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Women</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Kids</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Bestseller</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Upcoming Prints</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-            </div>
-            </div>
-          </nav>
-          <nav>
-            <div class="d-flex justify-content-end">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div> 
-      </nav>
-    </header> -->
 
-    <section id="slider">
-      <div class="slideshow-container">
-      </div>
-      <br>
-    </section>
-    <section class="centered-section">
-      <h1>Shop By Age</h1>
-    </section>
-    <section>
-      <div class="grid-container">
-        <div class="grid-item" onclick="handleClick(1)">
-          <img src="https://media.istockphoto.com/id/1387476888/vector/long-tailed-monkey-child-is-smiling-friendly-doodle-icon-image-kawaii.jpg?s=612x612&w=0&k=20&c=sOVM86OKCwKUclBMQ88MmERs8QO8CGXgVSwC6SRotMU=" alt="Image 2">
-          <h4>0-12 months</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScCR3pRVASmE8h7jt6y-dTt3cX-9IQ0_vs12h-FPcwuDi8TZ9HCeqfHz6zAnF6XjZ6hr4&usqp=CAU" alt="Image 2">
-          <h4>12-24 months</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTndoKd3LVlaCgsAI-iH3ljszPCm7r69XlHy0E2p0RpXLkKr_viisxFj8ngavLTYKEQau8&usqp=CAU" alt="Image 1">
-          <h4>24-36 months</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsoHcM0ISyUNvLfimUSxP8w-LWKwjN7qG4DZire6oVfQ-6B1y27NpOg2yUekUsXy0nUI&usqp=CAU" alt="Image 1">
-          <h4>3-5 year</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECORL4VdBJ62ZM_MwajLoNfsjP-RALDV8VRHU_z_KkMwkksrj9-xcp6zHveT07F77vDE&usqp=CAU" alt="Image 1">
-          <h4>5-7 year</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://thumbs.dreamstime.com/b/isolated-face-emoji-monkey-yellow-funny-icon-vector-197263820.jpg" alt="Image 1">
-          <h4>7-10 year</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://c8.alamy.com/comp/W3WHYC/silent-monkey-illustration-vector-on-white-background-W3WHYC.jpg" alt="Image 2">
-          <h4>10-12 year</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://ih1.redbubble.net/image.1103150811.8052/st,small,507x507-pad,600x600,f8f8f8.u1.jpg" alt="Image 1">
-          <h4>12+ year</h4>
-        </div>
-      </div>
-    </section>
-    <section class="centered-section">
-      <h1>Shop By Characters</h1>
-    </section>
-    <section>
-      <div class="grid-container">
-        <div class="grid-item">
-          <img src="https://hmadmin.hamleys.in/product/491280282/665/491280282-5.jpg" alt="Image 2">
-          <h4>Barbie</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQUDqnq6NXT_luxdwQOWI_qBWm3G2uRIio0T7jphKxMiw-iBSv4m9fXFRLMCry1MWvAJk&usqp=CAU" alt="Image 1">
-          <h4>Minions</h4>
-        </div>
-        <div class="grid-item">
-          <img src="data:image/jpeg;base64,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REREREREREREREREREREREWqzjyoJWWixyK9W2oGFSSA0V1VcQFtVrcu5KZNQHwXkhr6XtxBBDgfEBfHTBjVdlLg7RvaflkT4TmoQynn/lCOSBFLYZPZDTCA3BwFunGq5h0R1akknUCKjZ2v1EqQco9E82HVhRWPbXG05p5tILTzJXmU6KZwmj3wmt1m28k8QGkHxCqzTquOYP38luqd9h1Fv4b2tHQR8hn6zC4EAkgEVJd83c5L6UzdkRAloMECliGwEb6aXvqtLm1mJKSmlZ62L34grT1GmoZ7zvXWqXb0DTknVZ3GMUZdwymMm7nf7z115BFSiqilKjXzLl/J7ZeYjwadmI8AnGmk0HmQSTvWD1jrWNl3C0voTOPM+VnBV7bEXVFZQO3Wu+Nx5UUdZR6KpthPVOhxG6tItdzBGPtKsqWz26CQtxZ43bVWgVHcDt5yB8x9TEdVo8k58ZQlwGiITDGp9InLa0eqaKX8xs5RPy5iEAPa6w4DA3AhwBvAIOB2FRfK9GOUXGjw1o7xfDp+Cp9ylHMvNoSEEst23OIc40oBQUAGs8TjuXdbCrxZzH3zVdjTrB1L8It45GkT1kty+p6rpURFNWYREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREX/9k=" alt="Image 1">
-          <h4>Spider Man</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://i.pinimg.com/736x/ed/95/10/ed95108e9868fef7461eaa09492828e1.jpg" alt="Image 1">
-          <h4>Cocomelon</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://i.pinimg.com/736x/77/62/b3/7762b3951fe8f54e338fe826dab8962e.jpg" alt="Image 1">
-          <h4>Frozen</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://i.pinimg.com/236x/15/5a/4a/155a4ac4d5262081fdffdea27ebf5310.jpg" alt="Image 2">
-          <h4>Disney Princess</h4>
-        </div>
-        <div class="grid-item">
-          <img src="https://static.toiimg.com/photo/96031015.cms" alt="Image 1">
-          <h4>Harry Potter</h4>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="horizontal-div">
-        <div class="link-container">
-          <h2>Most Loved Categories</h2>
-          <a href="#" class="link-customize">Toys & Game</a>
-          <a href="#" class="link-customize">School & Travel</a>
-          <a href="#" class="link-customize">Hygiene & Personal care</a>
-          <a href="#" class="link-customize">Sports & Outdoor</a>
-          <a href="#" class="link-customize">Gadgets</a>
-          <a href="#" class="link-customize">Books</a>
-          <a href="#" class="link-customize">Fashion & Accessories</a>
-          <a href="#" class="link-customize">Furnishing & Decor</a>
-          <a href="#" class="link-customize">Party & Utils</a>
-        </div>
-        <div class="link-container">
-          <h2>About WoT</h2>
-          <a href="#" class="link-customize">Gift Cards</a>
-          <a href="#" class="link-customize">Blogs 4 you</a>
-          <a href="#" class="link-customize">Our Story</a>
-          <a href="#" class="link-customize">Team & Mentors</a>
-          <a href="#" class="link-customize">Store Nearby</a>
-          <a href="#" class="link-customize">Careers</a>
-          <a href="#" class="link-customize">About us</a>
-          <a href="#" onclick="termsncondition()" class="link-customize">Terms & Conditions</a>
-          <a href="#" class="link-customize">Privacy Policy</a>
-        </div>
-        <div class="link-container">
-          <h2>Support</h2>
-          <a href="#" class="link-customize">Support Team</a>
-          <a href="#" class="link-customize">Customer Care 24*7</a>
-          <a href="#" class="link-customize">Track your special order</a>
-          <a href="#" class="link-customize">Refund Policy</a>
-          <a href="#" onclick="faqs()" class="link-customize">FAQs</a>
-        </div>
-        <div class="link-container" id="scrollcontact">
-          <h2>Newsletter</h2>
-          <p>Subscribe to hear about new products and stores.</p>
-          <form>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-          </form>
-          <br>
-          <div class="link-container">
-            <p>Have questions or need assistance? Reach out to our friendly team.</p>
-            <a href="mailto:info@worldsoftoy.com">info@worldsoftoy.com</a>
-            <div class="social-icons">
-              <i class="fab fa-facebook"></i>
-              <i class="fab fa-twitter"></i>
-              <i class="fab fa-instagram"></i>
-              <i class="fab fa-youtube"></i>
-            </div>
-            <footer>
-              <p>© 2024 Worlds of Toy. All rights reserved.</p>
-            </footer>
-          </div>
-        </div>
-      </div>
-    </section>
-    <script>
-      function termsncondition() {
-        window.location.href = "termsconditions.html";
-      }
-    </script>
-    <script>
-      function faqs() {
-        window.location.href = "faq.html";
-      }
-    </script>
-    <script>
-      function navigate(page) {
-         alert("Navigating to " + page);
-        // Add your navigation logic or other actions here
-             
+  <section id="slider">
+    <div class="slideshow-container">
+      <!-- Slides will be added here -->
+    </div>
+    <br>
+  </section>
 
-      }
-      
-      function webpopmethod() {
-        clevertap.event.push("web_popup_event");
+  <section class="centered-section">
+    <h1>Shop By Age</h1>
+  </section>
 
-      }
-    </script>
-    <script>
-      function theFunction() {
-        // var elem = document.getElementById("scrollcontact");
-        //  elem.scrollIntoView();
-        // window.location.href = "termsconditions.html";
-         clevertap.event.push("push_notification");
-      }
-    </script>
-    <script>
-      function handleClick(itemNumber) {
-        window.location.href = " byageProducts.html";
-      }
-    </script>
-     <script src="notification.js"></script>
-  </body>
+  <section>
+    <div class="grid-container">
+      <div class="grid-item" onclick="handleClick(1)">
+        <img src="https://media.istockphoto.com/id/1387476888/vector/long-tailed-monkey-child-is-smiling-friendly-doodle-icon-image-kawaii.jpg?s=612x612&w=0&k=20&c=sOVM86OKCwKUclBMQ88MmERs8QO8CGXgVSwC6SRotMU=" alt="Image 1">
+        <h4>0-12 months</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScCR3pRVASmE8h7jt6y-dTt3cX-9IQ0_vs12h-FPcwuDi8TZ9HCeqfHz6zAnF6XjZ6hr4&usqp=CAU" alt="Image 2">
+        <h4>12-24 months</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTndoKd3LVlaCgsAI-iH3ljszPCm7r69XlHy0E2p0RpXLkKr_viisxFj8ngavLTYKEQau8&usqp=CAU" alt="Image 3">
+        <h4>24-36 months</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQsoHcM0ISyUNvLfimUSxP8w-LWKwjN7qG4DZire6oVfQ-6B1y27NpOg2yUekUsXy0nUI&usqp=CAU" alt="Image 4">
+        <h4>3-5 years</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRECORL4VdBJ62ZM_MwajLoNfsjP-RALDV8VRHU_z_KkMwkksrj9-xcp6zHveT07F77vDE&usqp=CAU" alt="Image 5">
+        <h4>5-7 years</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://thumbs.dreamstime.com/b/isolated-face-emoji-monkey-yellow-funny-icon-vector-197263820.jpg" alt="Image 6">
+        <h4>7-10 years</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://c8.alamy.com/comp/W3WHYC/silent-monkey-illustration-vector-on-white-background-W3WHYC.jpg" alt="Image 7">
+        <h4>10-12 years</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://ih1.redbubble.net/image.1103150811.8052/st,small,507x507-pad,600x600,f8f8f8.u1.jpg" alt="Image 8">
+        <h4>12+ years</h4>
+      </div>
+    </div>
+  </section>
+
+  <section class="centered-section">
+    <h1>Shop By Characters</h1>
+  </section>
+
+  <section>
+    <div class="grid-container">
+      <div class="grid-item">
+        <img src="https://hmadmin.hamleys.in/product/491280282/665/491280282-5.jpg" alt="Barbie">
+        <h4>Barbie</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQUDqnq6NXT_luxdwQOWI_qBWm3G2uRIio0T7jphKxMiw-iBSv4m9fXFRLMCry1MWvAJk&usqp=CAU" alt="Minions">
+        <h4>Minions</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://media.istockphoto.com/id/1291668921/photo/spiderman-figures.jpg?s=612x612&w=0&k=20&c=tntdGh29HVzt7mC4Biv2cR3uVDyaZbPCLxIjELXvmjU=" alt="Spider-Man">
+        <h4>Spider-Man</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhbmy_dCnKwKOgsxHXrUg8i4WSoPZk9iL3gU4B7RmIMrqEu2Jdp21Lw4QU_f-a5LkPj3A&usqp=CAU" alt="Doraemon">
+        <h4>Doraemon</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7EzwjxOwK3-Zwzx8fMPL13L9DBYpWghrdG-Ki9rcOdF_lMY7ZxLtyX5qCjkvH9z_KghA&usqp=CAU" alt="Chhota Bheem">
+        <h4>Chhota Bheem</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://cdn.shopify.com/s/files/1/0261/6953/products/Batman-Soft-Toy_1200x1200.jpg?v=1603151264" alt="Batman">
+        <h4>Batman</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://www.mrpopat.com/images/thumbs/0021623_mickey-mouse-doll_550.jpeg" alt="Mickey Mouse">
+        <h4>Mickey Mouse</h4>
+      </div>
+      <div class="grid-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdbWchQ_9-XDLpIibP8hm-2TaO8a9RWB8V2WyLO7M2dxQ-1HRtr6PTxZrbbEmyVE6Gz6p&usqp=CAU" alt="Hello Kitty">
+        <h4>Hello Kitty</h4>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>
