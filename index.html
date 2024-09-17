@@ -37,7 +37,7 @@
         s.parentNode.insertBefore(wzrk, s);
       })();
       console.log("web sdk initialize");
-      clevertap.event.push("web_sdk_initialised");
+      clevertap.event.push("web_sdk_initialised_new");
 
      }
 
@@ -47,10 +47,10 @@
       // var message = { action:'recordEventWithProps', event:'Product Viewed', properties: props};
         if (window.ReactNativeWebView){
           const date_viewed = new Date(2018, 11, 24);
-          window.ReactNativeWebView.postMessage(JSON.stringify({Type:"event",EventName : 'Product Viewed', Payload: {'Product Name': 'Dairy Milk','Category': 'Chocolate','Amount': 20.00, DateViewed:date_viewed}}));
+          window.ReactNativeWebView.postMessage(JSON.stringify({Type:"event",EventName : 'raised_from_webview', Payload: {'Product Name': 'Dairy Milk','Category': 'Chocolate','Amount': 20.00, DateViewed:date_viewed}}));
         } 
       else{
-        clevertap.event.push("web_page_called_10Sep");
+        clevertap.event.push("raised_from_website");
       }
     </script>
     <script type="module">
