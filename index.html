@@ -18,11 +18,18 @@
 
         /* Header Styles */
         header {
-            background-color: #004c4c;
+            /* background-color: #004c4c;
             padding: 1rem;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1000; */
+            background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      position: fixed; /* Make the header sticky */
+      top: 0;
+      width: 100%;
+      z-index: 999; /* Ensure it's on top of other elements */
         }
 
         .options {
@@ -176,9 +183,72 @@
             right: 1rem;
             top: 1rem;
         }
+        nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end; /* Shift the menu to the right */
+      margin-right: 20px; /* Add 20px margin to shift left */ 
+    }
+
+    nav li {
+      margin-left: 1rem; 
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    /* Dropdown styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      right: 0; 
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #fff; 
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ff0000;
+      color: #fff; 
+    }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
+
+            nav ul {
+            flex-direction: column;
+            align-items: flex-end; /* Align to the right */
+        }
+
+        nav li {
+            margin: 0.5rem 0;
+        }
             .menu-toggle {
                 display: block;
             }
@@ -318,7 +388,7 @@
 </head>
 <body>
     <header>
-        <button class="menu-toggle" onclick="toggleMenu()">
+        <!-- <button class="menu-toggle" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </button>
         <ul class="options">
@@ -335,7 +405,30 @@
                     <a href="#">Testimonials</a>
                 </div>
             </li>
-        </ul>
+        </ul> -->
+        <nav>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li class="dropdown">
+                <a href="#">Services</a>
+                <div class="dropdown-content">
+                  <a href="#">Service 1</a>
+                  <a href="#">Service 2</a>
+                  <a href="#">Service 3</a>
+                </div>
+              </li>
+              <li class="dropdown">
+                <a href="#">Products</a>
+                <div class="dropdown-content">
+                  <a href="#">Product 1</a>
+                  <a href="#">Product 2</a>
+                  <a href="#">Product 3</a>
+                </div>
+              </li>
+              <li><a href="#">Contact</a></li> 
+            </ul>
+          </nav>
     </header>
 
     <section id="slider">
