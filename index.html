@@ -8,13 +8,25 @@
   box-sizing: border-box;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-
 .top-banner {
   background: #000;
   color: #fff;
   text-align: center;
   padding: 0.5rem;
   font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Added marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.top-banner span {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
 }
 
 .utility-nav {
@@ -24,11 +36,132 @@
 
 .utility-nav ul {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   list-style: none;
-  gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  align-items: center;
+}
+
+/* Updated Arden Noir styling */
+.utility-nav .brand-name {
+  font-weight: 800;
+  color: #000;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.utility-nav .right-section {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.utility-nav .icons-section {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.utility-nav a {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper i {
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.icon-wrapper .count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #000;
+  color: #fff;
+  font-size: 0.7rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  background: #fff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Updated nav-container for center alignment */
+
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-link {
+  position: relative;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  padding: 1rem 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper i {
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.icon-wrapper .count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #000;
+  color: #fff;
+  font-size: 0.7rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
@@ -55,26 +188,39 @@ header {
   letter-spacing: 2px;
 }
 
-.nav-menu {
-  display: flex;
-  gap: 2rem;
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
 }
 
-.nav-link {
+.nav-link:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.8rem 1rem;
   color: #000;
   text-decoration: none;
-  text-transform: uppercase;
   font-size: 0.9rem;
-  letter-spacing: 1px;
+  text-transform: none;
+}
+
+.dropdown-menu a:hover {
+  background: #f8f8f8;
 }
 
 .hero {
   height: 80vh;
   background-image: url('https://github.com/Rick4444/wittycraftthreads.github.io/blob/main/ANI.jpeg?raw=true');
-/*   background-image: url('/ANI.jpeg'); */
-  
   background-size: cover;
-  
   background-position: center;
   display: flex;
   align-items: center;
@@ -112,6 +258,7 @@ header {
 
 .featured-section {
   padding: 4rem 2rem;
+  position: relative;
 }
 
 .section-title {
@@ -120,15 +267,29 @@ header {
   margin-bottom: 3rem;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+.products-container {
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.products-scroll {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 1rem 0;
+}
+
+.products-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .product-card {
+  flex: 0 0 calc(33.333% - 1.33rem);
   text-align: center;
 }
 
@@ -154,12 +315,42 @@ header {
   font-weight: 500;
 }
 
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-left {
+  left: 0;
+}
+
+.scroll-right {
+  right: 0;
+}
+
 .collection-banner {
   background: #000;
   color: #fff;
   text-align: center;
   padding: 6rem 2rem;
   margin: 4rem 0;
+}
+
+.collection-banner h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 footer {
@@ -196,6 +387,10 @@ footer {
   opacity: 0.8;
 }
 
+.footer-section a:hover {
+  opacity: 1;
+}
+
 .footer-bottom {
   max-width: 1400px;
   margin: 3rem auto 0;
@@ -206,246 +401,509 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .product-card {
+    flex: 0 0 calc(50% - 1rem);
   }
   
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-menu {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .products-grid {
-    grid-template-columns: 1fr;
+  .product-card {
+    flex: 0 0 100%;
   }
   
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
 }
+
+/* New styles for email popup */
+.popup {
+  display: none;
+  position: absolute;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 1rem;
+  min-width: 200px;
+  z-index: 1000;
+  top: 100%;
+  right: 0;
+}
+
+.popup-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.popup-option:hover {
+  background-color: #f5f5f5;
+}
+
+.popup.show {
+  display: block;
+}
+
+.icon-wrapper.active .popup {
+  display: block;
+}
+
+/* Styles for phone number popup */
+.phone-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 1100;
+  min-width: 300px;
+  text-align: center;
+}
+
+.phone-popup.show {
+  display: block;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.phone-number {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.copy-button {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  transition: background-color 0.2s;
+}
+
+.copy-button:hover {
+  background: #333;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.copy-success {
+  color: #4CAF50;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  display: none;
+}
+
 </style>
- <!-- CleverTap Integration -->
- <script type="text/javascript">
-  if(!window.ReactNativeWebView) {
-      var clevertap = {
-          event: [],
-          profile: [],
-          account: [],
-          onUserLogin: [],
-          notifications: [],
-          privacy: []
-      };
-      
-      clevertap.account.push({
-          "id": "TEST-79W-46Z-666Z"
-      });
-      
-      clevertap.privacy.push({
-          optOut: false,
-          useIP: false
-      });
 
-      (function() {
-          var wzrk = document.createElement('script');
-          wzrk.type = 'text/javascript';
-          wzrk.async = true;
-          wzrk.src = ('https:' == document.location.protocol ? 
-              'https://d2r1yp2w7bby2u.cloudfront.net' : 
-              'http://static.clevertap.com') + '/js/clevertap.min.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(wzrk, s);
-      })();
-
-      console.log("web sdk initialize");
-      clevertap.event.push("web_sdk_initialised");
-  }
-
-  // Event tracking
-  if (window.ReactNativeWebView) {
-      const date_viewed = new Date(2018, 11, 24);
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-          Type: "event",
-          EventName: 'raised_from_webview',
-          Payload: {
-              'Product Name': 'Dairy Milk',
-              'Category': 'Chocolate',
-              'Amount': 20.00,
-              DateViewed: date_viewed
-          }
-      }));
-  } else {
-      clevertap.event.push("raised_from_website");
-  }
-</script>
-
-<!-- Firebase Integration -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
-  
-  const firebaseConfig = {
-      apiKey: "AIzaSyCLBqex1hBag_vGPf35omQu8O__5FZhbIU",
-      authDomain: "clevertap-android-demo.firebaseapp.com",
-      projectId: "clevertap-android-demo",
-      storageBucket: "clevertap-android-demo.appspot.com",
-      messagingSenderId: "93452753934",
-      appId: "1:93452753934:web:d6a8cb0d5fb3ffe71cb05f",
-      measurementId: "G-3QWH98LBEK"
-  };
-  
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <div class="top-banner">
-    Free shipping on all orders over $150
+    <span>Free shipping on all orders over $150</span>
   </div>
 
   <div class="utility-nav">
     <ul>
-      <li><a href="#">Stores</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">Sign In</a></li>
+      <li class="brand-name">ARDEN NOIR</li>
+      <li class="right-section">
+        <div class="icons-section">
+          <div class="icon-wrapper">
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="icon-wrapper">
+            <i class="fas fa-heart"></i>
+            <span class="count">0</span>
+          </div>
+          <div class="icon-wrapper">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="count">0</span>
+          </div>
+          <div class="icon-wrapper">
+            <i class="fas fa-user"></i>
+          </div>
+          
+          <!-- New email icon with popup -->
+          <div class="icon-wrapper" id="contact-icon">
+            <i class="fas fa-envelope"></i>
+            <div class="popup" id="contact-popup">
+              <div class="popup-option" id="email-option">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+              </div>
+              <div class="popup-option" id="phone-option">
+                <i class="fas fa-phone"></i>
+                <span>Phone</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">ARDEN NOIR</a>
-    <nav class="nav-menu">
-        <a href="#" class="nav-link">IN THE SPOTLIGHT</a>
-        <a href="#" class="nav-link">THE ARDEN COLLECTION</a>
-        <a href="#" class="nav-link">WOMEN</a>
-        <a href="#" class="nav-link">MEN</a>
-        <a href="#" class="nav-link">CRAZYDEALS</a>
+      <nav class="nav-menu">
+        <div class="nav-link">
+          IN THE SPOTLIGHT
+          <div class="dropdown-menu">
+            <a href="#">New Arrivals</a>
+            <a href="#">Bestsellers</a>
+            <a href="#">Limited Edition</a>
+            <a href="#">Gift Sets</a>
+          </div>
+        </div>
+        <div class="nav-link">
+          THE ARDEN COLLECTION
+          <div class="dropdown-menu">
+            <a href="#">Signature Series</a>
+            <a href="#">Classic Collection</a>
+            <a href="#">Luxury Line</a>
+            <a href="#">Heritage Collection</a>
+          </div>
+        </div>
+        <div class="nav-link">
+          WOMEN
+          <div class="dropdown-menu">
+            <a href="#">Eau de Parfum</a>
+            <a href="#">Parfum</a>
+            <a href="#">Body Care</a>
+            <a href="#">Gift Sets</a>
+          </div>
+        </div>
+        <div class="nav-link">
+          MEN
+          <div class="dropdown-menu">
+            <a href="#">Eau de Toilette</a>
+            <a href="#">Aftershave</a>
+            <a href="#">Grooming</a>
+            <a href="#">Gift Sets</a>
+          </div>
+        </div>
+        <div class="nav-link">
+          CRAZYDEALS
+          <div class="dropdown-menu">
+            <a href="#">Special Offers</a>
+            <a href="#">Clearance</a>
+            <a href="#">Bundle Deals</a>
+            <a href="#">Last Chance</a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
-  
 
   <section class="hero">
     <div class="hero-content">
-      <h1>The New Arden Collection</h1>
+      <h1>The New Signature Collection</h1>
       <p>Discover the art of luxury perfumery</p>
     </div>
   </section>
 
   <section class="featured-section">
     <h2 class="section-title">Bestsellers</h2>
-    <div class="products-grid">
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D" alt="Noir Élégance" class="product-image">
-        <div class="product-category">Eau de Parfum</div>
-        <h3 class="product-name">Noir Élégance</h3>
-        <div class="product-price">$295</div>
+    <div class="products-container">
+      <!-- <button class="scroll-button scroll-left">&lt;</button> -->
+      <div class="products-scroll">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D" alt="Noir Élégance" class="product-image">
+          <div class="product-category">Eau de Parfum</div>
+          <h3 class="product-name">Noir Élégance</h3>
+          <div class="product-price">$295</div>
+        </div>
+
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D" alt="Rose Absolute" class="product-image">
+          <div class="product-category">Parfum</div>
+          <h3 class="product-name">Rose Absolute</h3>
+          <div class="product-price">$350</div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1622618991746-fe6004db3a47?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Amber Dreams" class="product-image">
+          <div class="product-category">Eau de Parfum</div>
+          <h3 class="product-name">Amber Dreams</h3>
+          <div class="product-price">$275</div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Velvet Oud" class="product-image">
+          <div class="product-category">Parfum</div>
+          <h3 class="product-name">Velvet Oud</h3>
+          <div class="product-price">$395</div>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1622618991746-fe6004db3a47?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Amber Dreams" class="product-image">
+          <div class="product-category">Eau de Parfum</div>
+          <h3 class="product-name">Amber Dreams</h3>
+          <div class="product-price">$275</div>
+        </div>
+        <!-- <button class="scroll-button scroll-right">&lt;</button> -->
+
       </div>
 
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D" alt="Rose Absolute" class="product-image">
-        <div class="product-category">Parfum</div>
-        <h3 class="product-name">Rose Absolute</h3>
-        <div class="product-price">$350</div>
-      </div>
+    </section>
 
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1622618991746-fe6004db3a47?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Amber Dreams" class="product-image">
-        <div class="product-category">Eau de Parfum</div>
-        <h3 class="product-name">Amber Dreams</h3>
-        <div class="product-price">$275</div>
-      </div>
-    </div>
-  </section>
+          <div class="collection-banner">
+            <h2>Limited Edition</h2>
+            <p>Discover our exclusive holiday collection</p>
+          </div>
+        
+          <section class="featured-section">
+            <h2 class="section-title">New Arrival</h2>
+            <div class="products-container">
+              <!-- <button class="scroll-button scroll-left">&lt;</button> -->
+              <div class="products-scroll">
+                <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Velvet Oud" class="product-image">
+                <div class="product-category">Parfum</div>
+                <h3 class="product-name">Velvet Oud</h3>
+                <div class="product-price">$395</div>
+              </div>
 
-  <div class="collection-banner">
-    <h2>Limited Edition</h2>
-    <p>Discover our exclusive holiday collection</p>
-  </div>
+        
+              <div class="product-card">
+                <img src="https://plus.unsplash.com/premium_photo-1679106770086-f4355693be1b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Golden Iris" class="product-image">
+                <div class="product-category">Eau de Parfum</div>
+                <h3 class="product-name">Golden Iris</h3>
+                <div class="product-price">$285</div>
+              </div>
+        
+              <div class="product-card">
+                <img src="https://media.istockphoto.com/id/2178674731/photo/perfume-bottle-on-white-satin-folded-fabric-background-scent-fragrance-cosmetic-beauty-product.webp?a=1&b=1&s=612x612&w=0&k=20&c=6ouKMwA1-GM8lj3fczQ0U1hTJ_KYlGXStYnypETOUcs=" alt="Midnight Jasmine" class="product-image">
+                <div class="product-category">Eau de Parfum</div>
+                <h3 class="product-name">Midnight Jasmine</h3>
+                <div class="product-price">$265</div>
+              </div>
 
-  <section class="featured-section">
-    <h2 class="section-title">New Arrivals</h2>
-    <div class="products-grid">
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Velvet Oud" class="product-image">
-        <div class="product-category">Parfum</div>
-        <h3 class="product-name">Velvet Oud</h3>
-        <div class="product-price">$395</div>
-      </div>
+              <div class="product-card">
+                <img src="https://plus.unsplash.com/premium_photo-1679106770086-f4355693be1b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Golden Iris" class="product-image">
+                <div class="product-category">Eau de Parfum</div>
+                <h3 class="product-name">Golden Iris</h3>
+                <div class="product-price">$285</div>
+              </div>
+        
+              <div class="product-card">
+                <img src="https://media.istockphoto.com/id/2178674731/photo/perfume-bottle-on-white-satin-folded-fabric-background-scent-fragrance-cosmetic-beauty-product.webp?a=1&b=1&s=612x612&w=0&k=20&c=6ouKMwA1-GM8lj3fczQ0U1hTJ_KYlGXStYnypETOUcs=" alt="Midnight Jasmine" class="product-image">
+                <div class="product-category">Eau de Parfum</div>
+                <h3 class="product-name">Midnight Jasmine</h3>
+                <div class="product-price">$265</div>
+              </div>
+        
+            </div>
+          </section>
+          <section id="slider">
+            <div class="slideshow-container">
+                <!-- Slider content will be added dynamically -->
+            </div>
+        </section>
+        
+          <footer>
+            <div class="footer-grid">
+              <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Shipping & Returns</a></li>
+                  <li><a href="#">Track Order</a></li>
+                  <li><a href="#">FAQ</a></li>
+                </ul>
+              </div>
+        
+              <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                  <li><a href="#">Our Story</a></li>
+                  <li><a href="#">Sustainability</a></li>
+                  <li><a href="#">Careers</a></li>
+                  <li><a href="#">Press</a></li>
+                </ul>
+              </div>
+        
+              <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                  <li><a href="#">Store Locator</a></li>
+                  <li><a href="#">Book Consultation</a></li>
+                  <li><a href="#">Gift Cards</a></li>
+                  <li><a href="#">Samples</a></li>
+                </ul>
+              </div>
+        
+              <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                  <li><a href="#">Instagram</a></li>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </div>
+            </div>
+        
+            <div class="footer-bottom">
+              <div>© 2025 Arden Noir. All rights reserved.</div>
+              <div>
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Use</a>
+              </div>
+            </div>
+          </footer>
+           <div class="overlay" id="overlay"></div>
+<div class="phone-popup" id="phone-popup">
+  <button class="close-button" id="close-popup">×</button>
+  <h3>Contact Number</h3>
+  <div class="phone-number" id="phone-number">+1-XXX-XXXX</div>
+  <button class="copy-button" id="copy-button">
+    <i class="fas fa-copy"></i>
+    Copy Number
+  </button>
+  <div class="copy-success" id="copy-success">Number copied to clipboard!</div>
+</div>
+  <script>
+          // Contact popup functionality
+    const contactIcon = document.getElementById('contact-icon');
+    const contactPopup = document.getElementById('contact-popup');
+    const emailOption = document.getElementById('email-option');
+    const phoneOption = document.getElementById('phone-option');
+    const phonePopup = document.getElementById('phone-popup');
+const overlay = document.getElementById('overlay');
+const closePopup = document.getElementById('close-popup');
+const copyButton = document.getElementById('copy-button');
+const phoneNumber = document.getElementById('phone-number');
+const copySuccess = document.getElementById('copy-success');
 
-      <div class="product-card">
-        <img src="https://plus.unsplash.com/premium_photo-1679106770086-f4355693be1b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Golden Iris" class="product-image">
-        <div class="product-category">Eau de Parfum</div>
-        <h3 class="product-name">Golden Iris</h3>
-        <div class="product-price">$285</div>
-      </div>
+// Update phone option click handler
+phoneOption.addEventListener('click', () => {
+  contactPopup.classList.remove('show');
+  phonePopup.classList.add('show');
+  overlay.classList.add('show');
+});
 
-      <div class="product-card">
-        <img src="https://media.istockphoto.com/id/2178674731/photo/perfume-bottle-on-white-satin-folded-fabric-background-scent-fragrance-cosmetic-beauty-product.webp?a=1&b=1&s=612x612&w=0&k=20&c=6ouKMwA1-GM8lj3fczQ0U1hTJ_KYlGXStYnypETOUcs=" alt="Midnight Jasmine" class="product-image">
-        <div class="product-category">Eau de Parfum</div>
-        <h3 class="product-name">Midnight Jasmine</h3>
-        <div class="product-price">$265</div>
-      </div>
+// Close popup when clicking close button or overlay
+closePopup.addEventListener('click', () => {
+  phonePopup.classList.remove('show');
+  overlay.classList.remove('show');
+  copySuccess.style.display = 'none'; // Reset copy message
+});
 
-    </div>
-  </section>
+overlay.addEventListener('click', () => {
+  phonePopup.classList.remove('show');
+  overlay.classList.remove('show');
+  copySuccess.style.display = 'none'; // Reset copy message
+});
 
-   <section id="slider">
-    <div class="slideshow-container">
-        <!-- Slider content will be added dynamically -->
-    </div>
-</section>
+// Copy to clipboard functionality
+copyButton.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(phoneNumber.textContent);
+    copySuccess.style.display = 'block';
+    
+    // Hide success message after 2 seconds
+    setTimeout(() => {
+      copySuccess.style.display = 'none';
+    }, 2000);
+  } catch (err) {
+    console.error('Failed to copy text: ', err);
+  }
+});
 
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-section">
-        <h4>Customer Care</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Track Order</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
+// Close popup with ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    phonePopup.classList.remove('show');
+    overlay.classList.remove('show');
+    copySuccess.style.display = 'none';
+  }
+});
 
-      <div class="footer-section">
-        <h4>About</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-        </ul>
-      </div>
+    // Toggle popup when clicking the contact icon
+    contactIcon.addEventListener('click', (e) => {
+      contactPopup.classList.toggle('show');
+      e.stopPropagation();
+    });
 
-      <div class="footer-section">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#">Store Locator</a></li>
-          <li><a href="#">Book Consultation</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Samples</a></li>
-        </ul>
-      </div>
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!contactIcon.contains(e.target)) {
+        contactPopup.classList.remove('show');
+      }
+    });
 
-      <div class="footer-section">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Newsletter</a></li>
-        </ul>
-      </div>
-    </div>
+    // Email option click handler
+    emailOption.addEventListener('click', () => {
+      window.location.href = 'mailto:'; // Opens default email client
+      contactPopup.classList.remove('show');
+    });
 
-    <div class="footer-bottom">
-      <div>© 2025 Arden Noir. All rights reserved.</div>
-      <div>
-        <a href="#">Privacy Policy</a> |
-        <a href="#">Terms of Use</a>
-      </div>
-    </div>
-  </footer>
+    // Phone option click handler (does nothing as per requirement)
+    phoneOption.addEventListener('click', () => {
+      contactPopup.classList.remove('show');
+    });
+
+    // Add this to your main page's script section
+document.querySelector('.fa-search').addEventListener('click', () => {
+  window.location.href = 'search.html';
+});
+
+document.querySelector('.fa-user').addEventListener('click', () => {
+  window.location.href = 'login.html';
+});
+
+  </script>
 </body>
 </html>
+        
