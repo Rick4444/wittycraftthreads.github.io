@@ -151,7 +151,7 @@
 </style>
 </head>
 <body>
-<div class="login-container">
+<!-- <div class="login-container">
   <div class="login-form">
     <h1 class="login-title">Enter Mobile Number</h1>
     <p class="login-subtitle">We will send you an OTP to verify your number</p>
@@ -161,6 +161,52 @@
         <div class="phone-input-group">
           <div class="country-code">+91</div>
           <input type="tel" class="phone-input" placeholder="Mobile Number" maxlength="10" pattern="[0-9]*">
+        </div>
+      </div>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="updates" class="custom-checkbox">
+        <label for="updates" class="checkbox-label">Send me order updates and offers</label>
+      </div>
+
+      <button type="submit" class="send-otp-button">
+        Send OTP
+        <span class="arrow-icon">→</span>
+      </button>
+
+      <div class="otp-container" id="otpContainer">
+        <div class="otp-inputs">
+          <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+          <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+          <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+          <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->
+
+<div class="login-container">
+  <div class="login-form">
+    <h1 class="login-title">Enter Mobile Number</h1>
+    <p class="login-subtitle">We will send you an OTP to verify your number</p>
+    
+    <form id="loginForm">
+      <div class="phone-input-container">
+        <div class="phone-input-group">
+          <select class="country-code">
+            <option value="+91">+91 (India)</option>
+            <option value="+1">+1 (United States)</option>
+            <option value="+44">+44 (United Kingdom)</option>
+            <option value="+61">+61 (Australia)</option>
+            <option value="+86">+86 (China)</option>
+            <option value="+55">+55 (Brazil)</option>
+            <option value="+27">+27 (South Africa)</option>
+            <option value="+81">+81 (Japan)</option>
+            <option value="+33">+33 (France)</option>
+            <option value="+49">+49 (Germany)</option>
+            </select>
+          <input type="tel" class="phone-input" placeholder="Mobile Number" maxlength="15" pattern="[0-9]*">
         </div>
       </div>
 
