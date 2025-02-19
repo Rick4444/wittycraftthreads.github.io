@@ -13,16 +13,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         /* Header Styles */
         header {
-            background-color: #004c4c;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+
+            background-color: #000000;
+      color: #fee903;
+      padding: 1rem;
+      position: fixed; /* Make the header sticky */
+      top: 0;
+      width: 100%;
+      z-index: 999; /* Ensure it's on top of other elements */
         }
 
         .options {
@@ -34,7 +37,7 @@
         }
 
         .options li a {
-            color: white;
+            color: rgb(255, 251, 0);
             text-decoration: none;
             padding: 0.5rem 1rem;
             display: block;
@@ -176,9 +179,84 @@
             right: 1rem;
             top: 1rem;
         }
+        nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end; /* Shift the menu to the right */
+      margin-right: 20px; /* Add 20px margin to shift left */ 
+    }
+
+    nav li {
+      margin-left: 1rem; 
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    /* Dropdown styles */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f00000;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      right: 0; 
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #fff; 
+      background-color: #f7f7f7;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f7f7f7;
+      color: #1500fc; 
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input[type="text"] {
+      padding: 8px;
+      border: none;
+      border-radius: 25px;
+      margin-right: 5px;
+    }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
+
+            nav ul {
+            flex-direction: column;
+            align-items: flex-end; /* Align to the right */
+        }
+
+        nav li {
+            margin: 0.5rem 0;
+        }
             .menu-toggle {
                 display: block;
             }
@@ -318,24 +396,35 @@
 </head>
 <body>
     <header>
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
-        <ul class="options">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Contact</a></li>
-            <li class="dropdown">
-                <a href="#">More</a>
+        <div class="search-bar"> 
+            <input type="text" placeholder="Search">
+          </div>
+        <nav>
+            <ul>
+              <li><a href="#">Crazydeals</a></li>
+              <li><a href="#">New Arrivals</a></li>
+              <li><a href="#">Bestsellers</a></li>
+              <li class="dropdown">
+                <a href="#">Giftings</a>
                 <div class="dropdown-content">
-                    <a href="#">Blog</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Testimonials</a>
+                  <a href="#">Gift Sets</a>
+                  <a href="#">Perfume Combos</a>
+                  <a href="#">Personalised Perfumes</a>
                 </div>
-            </li>
-        </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#">Perfumes</a>
+                <div class="dropdown-content">
+                  <a href="#">All Perfumes</a>
+                  <a href="#">Men</a>
+                  <a href="#">Women</a>
+                  <a href="#">Unisex</a>
+                  <a href="#">Attars</a>
+                </div>
+              </li>
+              <li><a href="#">Contact</a></li> 
+            </ul>
+          </nav>
     </header>
 
     <section id="slider">
@@ -475,6 +564,10 @@
         function faqs() {
             window.location.href = "faq.html";
         }
+        // Add this to your main page's script section
+        document.querySelector('.fa-search').addEventListener('click', () => {
+        window.location.href = 'search.html';
+        });
     </script>
 </body>
 </html>

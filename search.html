@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.search-container {
+  min-height: 100vh;
+  background: #fff;
+  padding: 2rem;
+}
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.close-search {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.search-form {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.search-input-wrapper {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.popular-searches {
+  margin-top: 3rem;
+}
+
+.search-section-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.popular-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tag:hover {
+  background: #e0e0e0;
+}
+
+.categories {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.category-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.category-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.category-name {
+  font-size: 1rem;
+  color: #666;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<div class="search-container">
+  <div class="search-header">
+    <h1>Search</h1>
+    <button class="close-search" onclick="window.history.back()">×</button>
+  </div>
+
+  <div class="search-form">
+    <div class="search-input-wrapper">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" placeholder="Search for products, categories, or collections...">
+    </div>
+
+    <div class="popular-searches">
+      <h2 class="search-section-title">Popular Searches</h2>
+      <div class="popular-tags">
+        <div class="tag">New Arrivals</div>
+        <div class="tag">Gift Sets</div>
+        <div class="tag">Limited Edition</div>
+        <div class="tag">Eau de Parfum</div>
+        <div class="tag">Men's Collection</div>
+        <div class="tag">Best Sellers</div>
+      </div>
+    </div>
+
+    <div class="categories">
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-female"></i>
+        </div>
+        <div class="category-name">Women's Fragrances</div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-male"></i>
+        </div>
+        <div class="category-name">Men's Fragrances</div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-gift"></i>
+        </div>
+        <div class="category-name">Gift Sets</div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="category-name">New Arrivals</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+</script>
+</body>
+</html>
