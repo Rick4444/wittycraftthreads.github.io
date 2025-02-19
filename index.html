@@ -1,573 +1,451 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World's of Toy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="manifest" href="https://rick4444.github.io/wittycraftthreads.github.io/manifest.json" />
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
 
-        /* Header Styles */
-        header {
+.top-banner {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
 
-            background-color: #000000;
-      color: #fee903;
-      padding: 1rem;
-      position: fixed; /* Make the header sticky */
-      top: 0;
-      width: 100%;
-      z-index: 999; /* Ensure it's on top of other elements */
-        }
+.utility-nav {
+  background: #f8f8f8;
+  padding: 0.5rem 2rem;
+}
 
-        .options {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+.utility-nav ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-        .options li a {
-            color: rgb(255, 251, 0);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            display: block;
-        }
+header {
+  background: #fff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-        .dropdown {
-            position: relative;
-        }
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
+.logo {
+  font-size: 1.8rem;
+  color: #000;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+}
 
-        .dropdown-content a {
-            color: #333 !important;
-            padding: 12px 16px;
-        }
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
 
-        /* Slider Styles */
-        .slideshow-container {
-            width: 100%;
-            position: relative;
-            margin: auto;
-        }
+.hero {
+  height: 80vh;
+  background-image: url('https://github.com/Rick4444/wittycraftthreads.github.io/blob/main/ANI.jpeg?raw=true');
+/*   background-image: url('/ANI.jpeg'); */
+  
+  background-size: cover;
+  
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
 
-        /* Section Styles */
-        .centered-section {
-            text-align: center;
-            padding: 2rem 0;
-        }
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
 
-        .grid-item {
-            text-align: center;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            cursor: pointer;
-            background-color: white;
-        }
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
 
-        .grid-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+.hero-content p {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
 
-        .grid-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
+.featured-section {
+  padding: 4rem 2rem;
+}
 
-        /* Contact Section */
-        .horizontal-div {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            background-color: #f5f5f5;
-            padding: 2rem;
-        }
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
 
-        .link-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-        .link-container h2 {
-            margin-bottom: 1rem;
-            color: #004c4c;
-        }
+.product-card {
+  text-align: center;
+}
 
-        .link-customize {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+.product-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
 
-        .link-customize:hover {
-            color: #004c4c;
-        }
+.product-category {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
 
-        /* Form Styles */
-        input[type="email"] {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+.product-name {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
 
-        /* Social Icons */
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
+.product-price {
+  font-weight: 500;
+}
 
-        .social-icons i {
-            font-size: 1.5rem;
-            color: #004c4c;
-            cursor: pointer;
-        }
+.collection-banner {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+  margin: 4rem 0;
+}
 
-        /* Footer */
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            color: #666;
-            padding: 1rem;
-        }
+footer {
+  background: #000;
+  color: #fff;
+  padding: 4rem 2rem;
+}
 
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-        }
-        nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: flex-end; /* Shift the menu to the right */
-      margin-right: 20px; /* Add 20px margin to shift left */ 
-    }
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-    nav li {
-      margin-left: 1rem; 
-    }
+.footer-section h4 {
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    nav a {
-      text-decoration: none;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 3px;
-    }
+.footer-section ul {
+  list-style: none;
+}
 
-    nav a:hover {
-      background-color: #555;
-    }
+.footer-section li {
+  margin-bottom: 0.8rem;
+}
 
-    /* Dropdown styles */
-    .dropdown {
-      position: relative;
-    }
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f00000;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      right: 0; 
-    }
+.footer-bottom {
+  max-width: 1400px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: space-between;
+}
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-    .dropdown-content a {
-      display: block;
-      padding: 12px 16px;
-      color: #fff; 
-      background-color: #f7f7f7;
-    }
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+ <!-- CleverTap Integration -->
+ <script type="text/javascript">
+  if(!window.ReactNativeWebView) {
+      var clevertap = {
+          event: [],
+          profile: [],
+          account: [],
+          onUserLogin: [],
+          notifications: [],
+          privacy: []
+      };
+      
+      clevertap.account.push({
+          "id": "TEST-79W-46Z-666Z"
+      });
+      
+      clevertap.privacy.push({
+          optOut: false,
+          useIP: false
+      });
 
-    .dropdown-content a:hover {
-      background-color: #f7f7f7;
-      color: #1500fc; 
-    }
-    .search-bar {
-      display: flex;
-      align-items: center;
-    }
+      (function() {
+          var wzrk = document.createElement('script');
+          wzrk.type = 'text/javascript';
+          wzrk.async = true;
+          wzrk.src = ('https:' == document.location.protocol ? 
+              'https://d2r1yp2w7bby2u.cloudfront.net' : 
+              'http://static.clevertap.com') + '/js/clevertap.min.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wzrk, s);
+      })();
 
-    .search-bar input[type="text"] {
-      padding: 8px;
-      border: none;
-      border-radius: 25px;
-      margin-right: 5px;
-    }
+      console.log("web sdk initialize");
+      clevertap.event.push("web_sdk_initialised");
+  }
 
+  // Event tracking
+  if (window.ReactNativeWebView) {
+      const date_viewed = new Date(2018, 11, 24);
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+          Type: "event",
+          EventName: 'raised_from_webview',
+          Payload: {
+              'Product Name': 'Dairy Milk',
+              'Category': 'Chocolate',
+              'Amount': 20.00,
+              DateViewed: date_viewed
+          }
+      }));
+  } else {
+      clevertap.event.push("raised_from_website");
+  }
+</script>
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-
-            nav ul {
-            flex-direction: column;
-            align-items: flex-end; /* Align to the right */
-        }
-
-        nav li {
-            margin: 0.5rem 0;
-        }
-            .menu-toggle {
-                display: block;
-            }
-
-            .options {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                padding-top: 3rem;
-            }
-
-            .options.active {
-                display: flex;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                background-color: #003939;
-            }
-
-            .dropdown.active .dropdown-content {
-                display: block;
-            }
-
-            .dropdown-content a {
-                color: white !important;
-            }
-
-            .grid-container {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-
-            .grid-item img {
-                height: 150px;
-            }
-
-            .horizontal-div {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .grid-container {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 1rem;
-                padding: 0.5rem;
-            }
-
-            .grid-item {
-                padding: 0.5rem;
-            }
-
-            .grid-item img {
-                height: 120px;
-            }
-
-            .centered-section h1 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-
-    <!-- CleverTap Integration -->
-    <script type="text/javascript">
-        if(!window.ReactNativeWebView) {
-            var clevertap = {
-                event: [],
-                profile: [],
-                account: [],
-                onUserLogin: [],
-                notifications: [],
-                privacy: []
-            };
-            
-            clevertap.account.push({
-                "id": "TEST-79W-46Z-666Z"
-            });
-            
-            clevertap.privacy.push({
-                optOut: false,
-                useIP: false
-            });
-
-            (function() {
-                var wzrk = document.createElement('script');
-                wzrk.type = 'text/javascript';
-                wzrk.async = true;
-                wzrk.src = ('https:' == document.location.protocol ? 
-                    'https://d2r1yp2w7bby2u.cloudfront.net' : 
-                    'http://static.clevertap.com') + '/js/clevertap.min.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(wzrk, s);
-            })();
-
-            console.log("web sdk initialize");
-            clevertap.event.push("web_sdk_initialised");
-        }
-
-        // Event tracking
-        if (window.ReactNativeWebView) {
-            const date_viewed = new Date(2018, 11, 24);
-            window.ReactNativeWebView.postMessage(JSON.stringify({
-                Type: "event",
-                EventName: 'raised_from_webview',
-                Payload: {
-                    'Product Name': 'Dairy Milk',
-                    'Category': 'Chocolate',
-                    'Amount': 20.00,
-                    DateViewed: date_viewed
-                }
-            }));
-        } else {
-            clevertap.event.push("raised_from_website");
-        }
-    </script>
-
-    <!-- Firebase Integration -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyCLBqex1hBag_vGPf35omQu8O__5FZhbIU",
-            authDomain: "clevertap-android-demo.firebaseapp.com",
-            projectId: "clevertap-android-demo",
-            storageBucket: "clevertap-android-demo.appspot.com",
-            messagingSenderId: "93452753934",
-            appId: "1:93452753934:web:d6a8cb0d5fb3ffe71cb05f",
-            measurementId: "G-3QWH98LBEK"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
+<!-- Firebase Integration -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
+  
+  const firebaseConfig = {
+      apiKey: "AIzaSyCLBqex1hBag_vGPf35omQu8O__5FZhbIU",
+      authDomain: "clevertap-android-demo.firebaseapp.com",
+      projectId: "clevertap-android-demo",
+      storageBucket: "clevertap-android-demo.appspot.com",
+      messagingSenderId: "93452753934",
+      appId: "1:93452753934:web:d6a8cb0d5fb3ffe71cb05f",
+      measurementId: "G-3QWH98LBEK"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </head>
 <body>
-    <header>
-        <div class="search-bar"> 
-            <input type="text" placeholder="Search">
-          </div>
-        <nav>
-            <ul>
-              <li><a href="#">Crazydeals</a></li>
-              <li><a href="#">New Arrivals</a></li>
-              <li><a href="#">Bestsellers</a></li>
-              <li class="dropdown">
-                <a href="#">Giftings</a>
-                <div class="dropdown-content">
-                  <a href="#">Gift Sets</a>
-                  <a href="#">Perfume Combos</a>
-                  <a href="#">Personalised Perfumes</a>
-                </div>
-              </li>
-              <li class="dropdown">
-                <a href="#">Perfumes</a>
-                <div class="dropdown-content">
-                  <a href="#">All Perfumes</a>
-                  <a href="#">Men</a>
-                  <a href="#">Women</a>
-                  <a href="#">Unisex</a>
-                  <a href="#">Attars</a>
-                </div>
-              </li>
-              <li><a href="#">Contact</a></li> 
-            </ul>
-          </nav>
-    </header>
+  <div class="top-banner">
+    Free shipping on all orders over $150
+  </div>
 
-    <section id="slider">
-        <div class="slideshow-container">
-            <!-- Slider content will be added dynamically -->
-        </div>
-    </section>
+  <div class="utility-nav">
+    <ul>
+      <li><a href="#">Stores</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Sign In</a></li>
+    </ul>
+  </div>
 
-    <section class="centered-section">
-        <h1>Shop By Age</h1>
-    </section>
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">ARDEN NOIR</a>
+    <nav class="nav-menu">
+        <a href="#" class="nav-link">IN THE SPOTLIGHT</a>
+        <a href="#" class="nav-link">THE ARDEN COLLECTION</a>
+        <a href="#" class="nav-link">WOMEN</a>
+        <a href="#" class="nav-link">MEN</a>
+        <a href="#" class="nav-link">CRAZYDEALS</a>
+      </nav>
+    </div>
+  </header>
+  
 
-    <section>
-        <div class="grid-container">
-            <!-- Age categories grid items -->
-            <div class="grid-item" onclick="handleClick(1)">
-                <img src="https://media.istockphoto.com/id/1387476888/vector/long-tailed-monkey-child-is-smiling-friendly-doodle-icon-image-kawaii.jpg?s=612x612&w=0&k=20&c=sOVM86OKCwKUclBMQ88MmERs8QO8CGXgVSwC6SRotMU=" alt="0-12 months">
-                <h4>0-12 months</h4>
-            </div>
-            <!-- Add other age category grid items here -->
-        </div>
-    </section>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The New Arden Collection</h1>
+      <p>Discover the art of luxury perfumery</p>
+    </div>
+  </section>
 
-    <section class="centered-section">
-        <h1>Shop By Characters</h1>
-    </section>
+  <section class="featured-section">
+    <h2 class="section-title">Bestsellers</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1590736704728-f4730bb30770?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D" alt="Noir Élégance" class="product-image">
+        <div class="product-category">Eau de Parfum</div>
+        <h3 class="product-name">Noir Élégance</h3>
+        <div class="product-price">$295</div>
+      </div>
 
-    <section>
-        <div class="grid-container">
-            <!-- Character categories grid items -->
-            <div class="grid-item">
-                <img src="https://hmadmin.hamleys.in/product/491280282/665/491280282-5.jpg" alt="Barbie">
-                <h4>Barbie</h4>
-            </div>
-            <!-- Add other character grid items here -->
-        </div>
-    </section>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D" alt="Rose Absolute" class="product-image">
+        <div class="product-category">Parfum</div>
+        <h3 class="product-name">Rose Absolute</h3>
+        <div class="product-price">$350</div>
+      </div>
 
-    <section id="contact">
-        <div class="horizontal-div">
-            <!-- Most Loved Categories -->
-            <div class="link-container">
-                <h2>Most Loved Categories</h2>
-                <a href="#" class="link-customize">Toys & Game</a>
-                <!-- Add other category links -->
-            </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1622618991746-fe6004db3a47?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Amber Dreams" class="product-image">
+        <div class="product-category">Eau de Parfum</div>
+        <h3 class="product-name">Amber Dreams</h3>
+        <div class="product-price">$275</div>
+      </div>
+    </div>
+  </section>
 
-            <!-- About WoT -->
-            <div class="link-container">
-                <h2>About WoT</h2>
-                <a href="#" class="link-customize">Gift Cards</a>
-                <!-- Add other about links -->
-            </div>
+  <div class="collection-banner">
+    <h2>Limited Edition</h2>
+    <p>Discover our exclusive holiday collection</p>
+  </div>
 
-            <!-- Support -->
-            <div class="link-container">
-                <h2>Support</h2>
-                <a href="#" class="link-customize">Support Team</a>
-                <!-- Add other support links -->
-            </div>
+  <section class="featured-section">
+    <h2 class="section-title">New Arrivals</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Velvet Oud" class="product-image">
+        <div class="product-category">Parfum</div>
+        <h3 class="product-name">Velvet Oud</h3>
+        <div class="product-price">$395</div>
+      </div>
 
-            <!-- Newsletter -->
-            <div class="link-container" id="scrollcontact">
-                <h2>Newsletter</h2>
-                <p>Subscribe to hear about new products and stores.</p>
-                <form>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                </form>
-                <br>
-                <div class="link-container">
-                    <p>Have questions or need assistance? Reach out to our friendly team.</p>
-                    <a href="mailto:info@worldsoftoy.com">info@worldsoftoy.com</a>
-                    <div class="social-icons">
-                        <i class="fab fa-facebook"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="product-card">
+        <img src="https://plus.unsplash.com/premium_photo-1679106770086-f4355693be1b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHBlcmZ1bWV8ZW58MHx8MHx8fDA%3D" alt="Golden Iris" class="product-image">
+        <div class="product-category">Eau de Parfum</div>
+        <h3 class="product-name">Golden Iris</h3>
+        <div class="product-price">$285</div>
+      </div>
 
-    <footer>
-        <p>© 2024 Worlds of Toy. All rights reserved.</p>
-    </footer>
+      <div class="product-card">
+        <img src="https://media.istockphoto.com/id/2178674731/photo/perfume-bottle-on-white-satin-folded-fabric-background-scent-fragrance-cosmetic-beauty-product.webp?a=1&b=1&s=612x612&w=0&k=20&c=6ouKMwA1-GM8lj3fczQ0U1hTJ_KYlGXStYnypETOUcs=" alt="Midnight Jasmine" class="product-image">
+        <div class="product-category">Eau de Parfum</div>
+        <h3 class="product-name">Midnight Jasmine</h3>
+        <div class="product-price">$265</div>
+      </div>
 
-    <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const options = document.querySelector('.options');
-            options.classList.toggle('active');
-        }
+    </div>
+  </section>
 
-        // Dropdown handling for mobile
-        document.querySelectorAll('.dropdown').forEach(dropdown => {
-            dropdown.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    this.classList.toggle('active');
-                    e.preventDefault();
-                }
-            });
-        });
+   <section id="slider">
+    <div class="slideshow-container">
+        <!-- Slider content will be added dynamically -->
+    </div>
+</section>
 
-        // Navigation functions
-        function navigate(page) {
-            if (window.ReactNativeWebView) {
-                window.ReactNativeWebView.postMessage(JSON.stringify({
-                    Type: "navigation",
-                    Page: page
-                }));
-            } else {
-                alert("Navigating to " + page);
-            }
-        }
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
 
-        function webpopmethod() {
-            if (!window.ReactNativeWebView) {
-                clevertap.event.push("web_popup_event");
-            }
-        }
+      <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
 
-        function theFunction() {
-            if (!window.ReactNativeWebView) {
-                clevertap.event.push("push_notification");
-            }
-        }
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Store Locator</a></li>
+          <li><a href="#">Book Consultation</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Samples</a></li>
+        </ul>
+      </div>
 
-        function handleClick(itemNumber) {
-            window.location.href = "byageProducts.html";
-        }
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
 
-        function termsncondition() {
-            window.location.href = "termsconditions.html";
-        }
-
-        function faqs() {
-            window.location.href = "faq.html";
-        }
-        // Add this to your main page's script section
-        document.querySelector('.fa-search').addEventListener('click', () => {
-        window.location.href = 'search.html';
-        });
-    </script>
+    <div class="footer-bottom">
+      <div>© 2025 Arden Noir. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
