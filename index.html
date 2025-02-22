@@ -294,6 +294,12 @@ header {
 .product-card {
   flex: 0 0 calc(33.333% - 1.33rem);
   text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
 }
 
 .product-image {
@@ -977,6 +983,11 @@ document.querySelector('.fa-search').addEventListener('click', () => {
 
 document.querySelector('.fa-user').addEventListener('click', () => {
   window.location.href = 'login.html';
+});
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+    window.location.href = 'ProductDetails.html';
+  });
 });
 
   </script>
