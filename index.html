@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>THE ARDEN NOIR</title>
+      <title>THE ARDEN NOIR</title>
     <link rel="icon" href="https://github.com/Rick4444/wittycraftthreads.github.io/blob/main/TAN.jpeg?raw=true" type="image/x-icon">  <link rel="icon" href="path/to/your/favicon.png" type="image/png">
+
 <style>
 * {
   margin: 0;
@@ -546,6 +547,79 @@ footer {
 }
 
 </style>
+       <!-- CleverTap Integration -->
+ <script type="text/javascript">
+  if(!window.ReactNativeWebView) {
+      var clevertap = {
+          event: [],
+          profile: [],
+          account: [],
+          onUserLogin: [],
+          notifications: [],
+          privacy: []
+      };
+      
+      clevertap.account.push({
+          "id": "TEST-79W-46Z-666Z"
+      });
+      
+      clevertap.privacy.push({
+          optOut: false,
+          useIP: false
+      });
+
+      (function() {
+          var wzrk = document.createElement('script');
+          wzrk.type = 'text/javascript';
+          wzrk.async = true;
+          wzrk.src = ('https:' == document.location.protocol ? 
+              'https://d2r1yp2w7bby2u.cloudfront.net' : 
+              'http://static.clevertap.com') + '/js/clevertap.min.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wzrk, s);
+      })();
+
+      console.log("web sdk initialize");
+      clevertap.event.push("tan_visited");
+  }
+
+  // Event tracking
+  if (window.ReactNativeWebView) {
+      const date_viewed = new Date(2018, 11, 24);
+      window.ReactNativeWebView.postMessage(JSON.stringify({
+          Type: "event",
+          EventName: 'raised_from_webview',
+          Payload: {
+              'Product Name': 'Dairy Milk',
+              'Category': 'Chocolate',
+              'Amount': 20.00,
+              DateViewed: date_viewed
+          }
+      }));
+  } else {
+      clevertap.event.push("raised_from_website");
+  }
+</script>
+
+<!-- Firebase Integration -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
+  
+  const firebaseConfig = {
+      apiKey: "AIzaSyCLBqex1hBag_vGPf35omQu8O__5FZhbIU",
+      authDomain: "clevertap-android-demo.firebaseapp.com",
+      projectId: "clevertap-android-demo",
+      storageBucket: "clevertap-android-demo.appspot.com",
+      messagingSenderId: "93452753934",
+      appId: "1:93452753934:web:d6a8cb0d5fb3ffe71cb05f",
+      measurementId: "G-3QWH98LBEK"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</head>
 
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
